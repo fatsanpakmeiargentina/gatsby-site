@@ -1,66 +1,59 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
-import get from 'lodash/get'
-import Img from 'gatsby-image'
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import Layout from '../components/layout'
+import { injectIntl } from 'gatsby-plugin-react-intl'
+import ShareBar from '../components/share-bar'
 
-import heroStyles from '../components/hero.module.css'
+const BlogPostTemplate = ({
+  intl,
+  location,
+  data: {
+    contentfulBlogPost: post,
+    contentfulSiteMetadata: {
+      name,
+    },
+  },
+}) => (
+  <Layout location={location} title={name} intl={intl}>
+    <div style={{ background: '#fff' }}>
+      <Helmet title={`${post.title} | ${name}`} />
+      <div className="wrapper">
+        <h1 className="section-headline">{post.title}</h1>
+        <p
+          style={{
+            display: 'block',
+          }}
+        >
+          {post.publishDate}
+        </p>
+        {
+          renderRichText(post.body)
+        }
+        <ShareBar
+          shareURL={location.href}
+          title={post.title}
+        />
+      </div>
+    </div>
+  </Layout>
+)
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const post = get(this.props, 'data.contentfulBlogPost')
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
-
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={`${post.title} | ${siteTitle}`} />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={post.title}
-              fluid={post.heroImage.fluid}
-            />
-          </div>
-          <div className="wrapper">
-            <h1 className="section-headline">{post.title}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              {post.publishDate}
-            </p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.body.childMarkdownRemark.html,
-              }}
-            />
-          </div>
-        </div>
-      </Layout>
-    )
-  }
-}
-
-export default BlogPostTemplate
+export default injectIntl(BlogPostTemplate)
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+  query BlogPostBySlug($slug: String!, $locale: String) {
+    contentfulBlogPost(slug: { eq: $slug }, node_locale: { eq: $locale }) {
       title
-      publishDate(formatString: "MMMM Do, YYYY")
-      heroImage {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
-      }
+      node_locale
+      publishDate(formatString: "MMMM Do, YYYY", locale: $locale)
       body {
-        childMarkdownRemark {
-          html
-        }
+        raw
       }
+    }
+    contentfulSiteMetadata {
+      name
     }
   }
 `

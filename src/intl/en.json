@@ -1,0 +1,34 @@
+{
+  "about": {
+    "title": "About",
+    "location": {
+      "title": "Location",
+      "description": ""
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "description": ""
+    }
+  },
+  "blog": {
+    "title": "Blog"
+  },
+  "links": {
+    "title": "Links",
+    "types": {
+      "Headquarter": "Headquarters",
+      "Schools": "Schools",
+      "Organizations": "Organizations"
+    }
+  },
+  "misc": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "media": {
+    "title": "Media"
+  },
+  "school": {
+    "title": "School"
+  }
+}

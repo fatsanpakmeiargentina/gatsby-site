@@ -1,0 +1,34 @@
+{
+  "about": {
+    "title": "Sobre nosotros",
+    "location": {
+      "title": "Localización",
+      "description": "Nos encontramos en la ciudad de La Plata"
+    },
+    "contactUs": {
+      "title": "Formas de contacto",
+      "description": "Puedes contactarnos en cualquiera de nuestras redes sociales"
+    }
+  },
+  "blog": {
+    "title": "Blog"
+  },
+  "links": {
+    "title": "Enlaces de interés",
+    "types": {
+      "Headquarter": "Sedes",
+      "Schools": "Escuelas",
+      "Organizations": "Organizaciones"
+    }
+  },
+  "misc": {
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "media": {
+    "title": "Media"
+  },
+  "school": {
+    "title": "Escuela"
+  }
+}

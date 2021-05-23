@@ -1,62 +1,64 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-import styles from './blog.module.css'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
+import * as styles from './blog.module.css'
+import { injectIntl } from 'gatsby-plugin-react-intl'
 
-class BlogIndex extends React.Component {
-  render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-
-    return (
-      <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={siteTitle} />
-          <div className={styles.hero}>Blog</div>
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
+const BlogIndex = ({
+  intl,
+  location,
+  data: {
+    allContentfulBlogPost: {
+      edges: posts,
+    },
+    contentfulSiteMetadata: {
+      name,
+    },
+  },
+}) => {
+  return (
+    <Layout location={location} title={name} intl={intl}>
+      <div style={{ background: '#fff' }}>
+        <Helmet title={`${intl.formatMessage({id: "blog.title"})} | ${name}`} />
+        <div className={styles.title}>{intl.formatMessage({id: "blog.title"})}</div>
+        <div className="wrapper">
+          <h2 className="section-headline">Recent articles</h2>
+          <ul className="article-list">
+            {posts.map(({ node }) => {
+              return (
+                <li key={node.slug}>
+                  <ArticlePreview article={node} />
+                </li>
+              )
+            })}
+          </ul>
         </div>
-      </Layout>
-    )
-  }
+      </div>
+    </Layout>
+  )
 }
 
-export default BlogIndex
+export default injectIntl(BlogIndex)
 
 export const pageQuery = graphql`
-  query BlogIndexQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+  query BlogIndexQuery($locale: String) {
+    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }, filter: {node_locale: {eq: $locale}}) {
       edges {
         node {
           title
           slug
-          publishDate(formatString: "MMMM Do, YYYY")
+          publishDate(formatString: "MMMM Do, YYYY", locale: $locale)
+          body {
+            raw
+          }
           tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
         }
       }
+    }
+    contentfulSiteMetadata {
+      name
     }
   }
 `

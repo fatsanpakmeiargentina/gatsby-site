@@ -40,6 +40,7 @@ module.exports = {
   },
   pathPrefix: "/gatsby-contentful-starter",
   plugins: [
+    "gatsby-plugin-image",
     "gatsby-transformer-remark",
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
@@ -47,6 +48,15 @@ module.exports = {
     {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
+    },
+    {
+        resolve: `gatsby-plugin-react-intl`,
+        options: {
+            path: `${__dirname}/src/intl`,
+            languages: ['es', 'en'],
+            defaultLanguage: 'es',
+            redirect: true,
+        },
     },
   ],
 };

@@ -1,13 +1,12 @@
 {
-  "name": "Contentful Gatsby Starter",
-  "description": "Gatsby starter for a Contentful project.",
+  "name": "Fat San Pak Mei Argentina",
+  "description": "Fat San Pak Mei Argentina official site",
   "keywords": [
-    "contentful",
-    "gatsby",
-    "static",
-    "ssg"
+    "kung-fu",
+    "fat-san-pak-mei",
+    "argentina"
   ],
-  "repository": "https://github.com/contentful-userland/gatsby-contentful-starter",
+  "repository": "https://github.com/fatsanpakmeiargentina/gatsby-site",
   "success_url": "/",
   "buildpacks": [
     {
