@@ -20,7 +20,7 @@ const VideosIndex = ({
 }) => {
   const intl = useIntl()
   const [page, setPage] = useState("")
-  const apiKey = process.env.YOUTUBE_API_KEY
+  const apiKey = process.env.GATSBY_YOUTUBE_API_KEY
   const url = `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${youtubePlaylistId}&part=snippet&maxResults=5&key=${apiKey}`
   const { data, isLoading } = useFetch(url, { page })
 
