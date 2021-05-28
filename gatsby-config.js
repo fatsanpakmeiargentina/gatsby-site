@@ -44,6 +44,7 @@ module.exports = {
     "gatsby-transformer-remark",
     "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-gatsby-cloud",
     "gatsby-plugin-sharp",
     {
       resolve: "gatsby-source-contentful",
@@ -53,7 +54,7 @@ module.exports = {
         resolve: `gatsby-plugin-react-intl`,
         options: {
             path: `${__dirname}/src/intl`,
-            languages: ['es', 'en'],
+            languages: ['es'],
             defaultLanguage: 'es',
             redirect: true,
             redirectDefaultLanguageToRoot: true,
