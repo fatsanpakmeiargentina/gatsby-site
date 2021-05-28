@@ -60,5 +60,18 @@ module.exports = {
             redirectDefaultLanguageToRoot: true,
         },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Fat San Pak Mei Argentina`,
+        short_name: `FSPMA`,
+        start_url: `/`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: 'static/favicon.ico',
+      },
+    },
+    "gatsby-plugin-offline",
   ],
 };
