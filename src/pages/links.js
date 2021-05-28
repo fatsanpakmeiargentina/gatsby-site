@@ -3,11 +3,10 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import * as styles from './links.module.css'
-import { injectIntl } from 'gatsby-plugin-react-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import { LinkGroup } from '../components/links'
 
 const LinksIndex = ({
-  intl,
   location,
   data: {
     allContentfulExtraLinks: {
@@ -15,32 +14,37 @@ const LinksIndex = ({
     },
     contentfulSiteMetadata: {
       name,
+      icon,
     },
   },
-}) => (
-  <Layout location={location} title={name} intl={intl}>
-    <div style={{ background: '#fff' }}>
-      <Helmet title={`${intl.formatMessage({id: "links.title"})} | ${name}`} />
-      <div className={styles.title}>{intl.formatMessage({id: "links.title"})}</div>
-      <div className="wrapper">
-      {
-        links.map((group) => {
-          return (
-            <LinkGroup
-              key={group.fieldValue}
-              intl={intl}
-              group={group}
-            >
-            </LinkGroup>
-          )
-        })
-      }
-      </div>
-    </div>
-  </Layout>
-)
+}) => {
+  const intl = useIntl()
 
-export default injectIntl(LinksIndex)
+  return (
+    <Layout location={location} title={name} icon={icon}>
+      <div style={{ background: '#fff' }}>
+        <Helmet title={`${intl.formatMessage({id: "links.title"})} | ${name}`} />
+        <div className={styles.title}>{intl.formatMessage({id: "links.title"})}</div>
+        <div className="wrapper">
+        {
+          links.map((group) => {
+            return (
+              <LinkGroup
+                key={group.fieldValue}
+                intl={intl}
+                group={group}
+              >
+              </LinkGroup>
+            )
+          })
+        }
+        </div>
+      </div>
+    </Layout>
+  )
+}
+
+export default LinksIndex
 
 export const pageQuery = graphql`
   query LinksQuery($locale: String) {
@@ -66,6 +70,9 @@ export const pageQuery = graphql`
     }
     contentfulSiteMetadata {
       name
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
+      }
     }
   }
 `

@@ -3,20 +3,19 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import Layout from '../components/layout'
-import { injectIntl } from 'gatsby-plugin-react-intl'
 import ShareBar from '../components/share-bar'
 
 const BlogPostTemplate = ({
-  intl,
   location,
   data: {
     contentfulBlogPost: post,
     contentfulSiteMetadata: {
       name,
+      icon,
     },
   },
 }) => (
-  <Layout location={location} title={name} intl={intl}>
+  <Layout location={location} title={name} icon={icon}>
     <div style={{ background: '#fff' }}>
       <Helmet title={`${post.title} | ${name}`} />
       <div className="wrapper">
@@ -40,7 +39,7 @@ const BlogPostTemplate = ({
   </Layout>
 )
 
-export default injectIntl(BlogPostTemplate)
+export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $locale: String) {
@@ -54,6 +53,9 @@ export const pageQuery = graphql`
     }
     contentfulSiteMetadata {
       name
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
+      }
     }
   }
 `

@@ -56,6 +56,7 @@ module.exports = {
             languages: ['es', 'en'],
             defaultLanguage: 'es',
             redirect: true,
+            redirectDefaultLanguageToRoot: true,
         },
     },
   ],

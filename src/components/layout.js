@@ -3,9 +3,9 @@ import './base.css'
 import Container from './container'
 import Navigation from './navigation'
 
-const Template = ({ title, intl, children }) => (
+const Template = ({ title, icon, children }) => (
   <>
-    <Navigation title={title} intl={intl} />
+    <Navigation title={title} icon={icon}/>
     <Container>
       {children}
     </Container>

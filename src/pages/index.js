@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
-import { injectIntl } from 'gatsby-plugin-react-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 
 const RootIndex = ({
   data: {
@@ -12,30 +12,34 @@ const RootIndex = ({
     },
     contentfulSiteMetadata: {
       name,
+      icon,
     },
   },
-  intl,
   location,
-}) => (
-  <Layout location={location} title={name} intl={intl}>
-    <div style={{ background: '#fff' }}>
-      <Helmet title={name} />
-      <div className="wrapper">
-        <h2 className="section-headline">Recent articles</h2>
-        <ul className="article-list">
-          {
-            posts.map(({ node }) => (
-              <li key={node.slug}>
-                <ArticlePreview article={node} />
-              </li>
-            ))}
-        </ul>
-      </div>
-    </div>
-  </Layout>
-)
+}) => {
+  const intl = useIntl()
 
-export default injectIntl(RootIndex)
+  return (
+    <Layout location={location} title={name} icon={icon}>
+      <div style={{ background: '#fff' }}>
+        <Helmet title={name} />
+        <div className="wrapper">
+          <h2 className="section-headline">{intl.formatMessage({id: "misc.recentArticles"})}</h2>
+          <ul className="article-list">
+            {
+              posts.map(({ node }) => (
+                <li key={node.slug}>
+                  <ArticlePreview article={node} />
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
+    </Layout>
+  )
+}
+
+export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery($locale: String) {
@@ -54,6 +58,9 @@ export const pageQuery = graphql`
     }
     contentfulSiteMetadata {
       name
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
+      }
     }
   }
 `

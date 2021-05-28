@@ -4,10 +4,9 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 import * as styles from './blog.module.css'
-import { injectIntl } from 'gatsby-plugin-react-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 
 const BlogIndex = ({
-  intl,
   location,
   data: {
     allContentfulBlogPost: {
@@ -15,16 +14,19 @@ const BlogIndex = ({
     },
     contentfulSiteMetadata: {
       name,
+      icon,
     },
   },
 }) => {
+  const intl = useIntl()
+
   return (
-    <Layout location={location} title={name} intl={intl}>
+    <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "blog.title"})} | ${name}`} />
         <div className={styles.title}>{intl.formatMessage({id: "blog.title"})}</div>
         <div className="wrapper">
-          <h2 className="section-headline">Recent articles</h2>
+          <h2 className="section-headline">{intl.formatMessage({id: "misc.recentArticles"})}</h2>
           <ul className="article-list">
             {posts.map(({ node }) => {
               return (
@@ -40,7 +42,7 @@ const BlogIndex = ({
   )
 }
 
-export default injectIntl(BlogIndex)
+export default BlogIndex
 
 export const pageQuery = graphql`
   query BlogIndexQuery($locale: String) {
@@ -59,6 +61,9 @@ export const pageQuery = graphql`
     }
     contentfulSiteMetadata {
       name
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
+      }
     }
   }
 `

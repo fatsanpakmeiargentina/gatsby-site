@@ -5,11 +5,10 @@ import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
 import * as styles from './school.module.css'
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { injectIntl } from 'gatsby-plugin-react-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import ShareBar from '../components/share-bar'
 
 const SchoolIndex = ({
-  intl,
   location,
   data: {
     allContentfulSchoolSections: {
@@ -17,11 +16,14 @@ const SchoolIndex = ({
     },
     contentfulSiteMetadata: {
       name,
+      icon,
     },
   },
 }) => {
+  const intl = useIntl()
+
   return (
-    <Layout location={location} title={name} intl={intl}>
+    <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "school.title"})} | ${name}`} />
         <div className={styles.title}>{intl.formatMessage({id: "school.title"})}</div>
@@ -52,7 +54,7 @@ const SchoolIndex = ({
   )
 }
 
-export default injectIntl(SchoolIndex)
+export default SchoolIndex
 
 export const pageQuery = graphql`
   query SchoolQuery($locale: String) {
@@ -75,6 +77,9 @@ export const pageQuery = graphql`
     }
     contentfulSiteMetadata {
       name
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
+      }
     }
   }
 `

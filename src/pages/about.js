@@ -3,26 +3,28 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import * as styles from './about.module.css'
-import { injectIntl } from 'gatsby-plugin-react-intl'
+import { useIntl } from 'gatsby-plugin-react-intl'
 import ContactBar from '../components/contact-bar'
 
 const AboutIndex = ({
-  intl,
   location,
   data: {
     contentfulSiteMetadata: {
       name,
+      icon,
       instagram,
       email,
       facebook,
       flickr,
-      youTube,
+      youtube,
       direction,
     },
   },
 }) => {
+  const intl = useIntl()
+
   return (
-    <Layout location={location} title={name} intl={intl}>
+    <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "about.title"})} | ${name}`} />
         <div className={styles.title}>{intl.formatMessage({id: "about.title"})}</div>
@@ -31,14 +33,20 @@ const AboutIndex = ({
           <p>{intl.formatMessage({id: "about.location.description"})}</p>
           <h2>{intl.formatMessage({id: "about.contactUs.title"})}</h2>
           <p>{intl.formatMessage({id: "about.contactUs.description"})}</p>
-          <ContactBar email={email} facebook={facebook} />
+          <ContactBar
+            email={email}
+            facebook={facebook}
+            flickr={flickr}
+            youtube={youtube}
+            instagram={instagram}
+          />
         </div>
       </div>
     </Layout>
   )
 }
 
-export default injectIntl(AboutIndex)
+export default AboutIndex
 
 export const pageQuery = graphql`
   query AboutQuery {
@@ -48,10 +56,13 @@ export const pageQuery = graphql`
       email
       facebook
       flickr
-      youTube
+      youtube
       direction {
         lat
         lon
+      }
+      icon {
+        gatsbyImageData(layout: FIXED, width: 50)
       }
     }
   }

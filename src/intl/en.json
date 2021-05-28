@@ -22,13 +22,17 @@
     }
   },
   "misc": {
+    "recentArticles": "Recent Articles",
     "previous": "Previous",
     "next": "Next"
   },
-  "media": {
-    "title": "Media"
+  "photos": {
+    "title": "Photos"
   },
   "school": {
     "title": "School"
+  },
+  "videos": {
+    "title": "Videos"
   }
 }
