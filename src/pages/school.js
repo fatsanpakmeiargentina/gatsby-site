@@ -26,7 +26,6 @@ const SchoolIndex = ({
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "school.title"})} | ${name}`} />
-        <div className={styles.title}>{intl.formatMessage({id: "school.title"})}</div>
         <div className="wrapper">
           <ShareBar shareURL={location.href} title={name} />
           {

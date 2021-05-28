@@ -24,7 +24,6 @@ const BlogIndex = ({
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "blog.title"})} | ${name}`} />
-        <div className={styles.title}>{intl.formatMessage({id: "blog.title"})}</div>
         <div className="wrapper">
           <h2 className="section-headline">{intl.formatMessage({id: "misc.recentArticles"})}</h2>
           <ul className="article-list">

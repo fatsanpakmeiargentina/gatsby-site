@@ -27,7 +27,6 @@ const AboutIndex = ({
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "about.title"})} | ${name}`} />
-        <div className={styles.title}>{intl.formatMessage({id: "about.title"})}</div>
         <div className="wrapper">
           <h2>{intl.formatMessage({id: "about.location.title"})}</h2>
           <p>{intl.formatMessage({id: "about.location.description"})}</p>

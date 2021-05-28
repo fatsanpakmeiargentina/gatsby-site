@@ -24,7 +24,6 @@ const LinksIndex = ({
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
         <Helmet title={`${intl.formatMessage({id: "links.title"})} | ${name}`} />
-        <div className={styles.title}>{intl.formatMessage({id: "links.title"})}</div>
         <div className="wrapper">
         {
           links.map((group) => {
