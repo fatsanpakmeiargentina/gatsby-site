@@ -6,6 +6,7 @@ import {
 import InstagranIcon from '../icons/InstagramIcon'
 import YoutubeIcon from '../icons/YoutubeIcon'
 import FlickrIcon from '../icons/FlickrIcon'
+import * as styles from './contact-bar.module.css'
 
 const ContactBar = ({
   email,
@@ -14,7 +15,7 @@ const ContactBar = ({
   instagram,
   flickr,
 }) => (
-  <div>
+  <div className={styles.contactBar}>
     <a target="_blank" rel="noreferrer" href={`mailto:${email}`}>
       <EmailIcon size={32} round />
     </a>

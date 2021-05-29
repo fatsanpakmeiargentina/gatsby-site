@@ -5,7 +5,6 @@ import {
   LinkedinShareButton,
   RedditShareButton,
   TelegramShareButton,
-  TumblrShareButton,
   TwitterShareButton,
   WhatsappShareButton,
   EmailIcon,
@@ -13,7 +12,6 @@ import {
   LinkedinIcon,
   RedditIcon,
   TelegramIcon,
-  TumblrIcon,
   TwitterIcon,
   WhatsappIcon,
 } from "react-share"
@@ -58,13 +56,6 @@ const ShareBar = ({
     >
       <TelegramIcon size={32} round />
     </TelegramShareButton>
-
-    <TumblrShareButton
-      url={shareURL}
-      title={title || "Tumblr"}
-    >
-      <TumblrIcon size={32} round />
-    </TumblrShareButton>
 
     <TwitterShareButton
       url={shareURL}
