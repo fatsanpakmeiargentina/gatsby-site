@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { GatsbyImage } from 'gatsby-plugin-image'
 import Layout from '../components/layout'
-import * as styles from './school.module.css'
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { useIntl } from 'gatsby-plugin-react-intl'
 import ShareBar from '../components/share-bar'
@@ -25,7 +24,12 @@ const SchoolIndex = ({
   return (
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${intl.formatMessage({id: "school.title"})} | ${name}`} />
+        <Helmet
+          title={`${intl.formatMessage({id: "school.title"})} | ${name}`}
+          htmlAttributes={{
+            lang: intl.locale,
+          }}
+        />
         <div className="wrapper">
           <ShareBar shareURL={location.href} title={name} />
           {

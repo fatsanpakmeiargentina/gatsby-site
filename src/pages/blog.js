@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
-import * as styles from './blog.module.css'
 import { useIntl } from 'gatsby-plugin-react-intl'
 
 const BlogIndex = ({
@@ -23,7 +22,12 @@ const BlogIndex = ({
   return (
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${intl.formatMessage({id: "blog.title"})} | ${name}`} />
+        <Helmet
+          title={`${intl.formatMessage({id: "blog.title"})} | ${name}`}
+          htmlAttributes={{
+            lang: intl.locale,
+          }}
+        />
         <div className="wrapper">
           <h2 className="section-headline">{intl.formatMessage({id: "misc.recentArticles"})}</h2>
           <ul className="article-list">

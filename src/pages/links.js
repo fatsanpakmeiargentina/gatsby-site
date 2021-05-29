@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
-import * as styles from './links.module.css'
 import { useIntl } from 'gatsby-plugin-react-intl'
 import { LinkGroup } from '../components/links'
 
@@ -23,7 +22,12 @@ const LinksIndex = ({
   return (
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${intl.formatMessage({id: "links.title"})} | ${name}`} />
+        <Helmet
+          title={`${intl.formatMessage({id: "links.title"})} | ${name}`}
+          htmlAttributes={{
+            lang: intl.locale,
+          }}
+        />
         <div className="wrapper">
         {
           links.map((group) => {

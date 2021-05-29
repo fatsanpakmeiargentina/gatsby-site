@@ -22,7 +22,12 @@ const RootIndex = ({
   return (
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
-        <Helmet title={name} />
+        <Helmet
+          title={name}
+          htmlAttributes={{
+            lang: intl.locale,
+          }}
+        />
         <div className="wrapper">
           <h2 className="section-headline">{intl.formatMessage({id: "misc.recentArticles"})}</h2>
           <ul className="article-list">

@@ -27,7 +27,12 @@ const VideosIndex = ({
   return (
     <Layout location={location} title={name} icon={icon}>
       <div style={{ background: '#fff' }}>
-        <Helmet title={`${intl.formatMessage({id: "videos.title"})} | ${name}`} />
+        <Helmet
+          title={`${intl.formatMessage({id: "videos.title"})} | ${name}`}
+          htmlAttributes={{
+            lang: intl.locale,
+          }}
+        />
         <div className={styles.videos + " wrapper"}>
         {
           isLoading && <Loader
