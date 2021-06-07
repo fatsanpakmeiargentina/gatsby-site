@@ -2,11 +2,16 @@ import React, { Fragment, useState } from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
-import * as styles from './videos.module.css'
 import { useIntl } from 'gatsby-plugin-react-intl'
 import { useFetch } from '../hooks/fetch.js'
-import YouTube from 'react-youtube'
 import Loader from "react-loader-spinner"
+import {
+  VideosContainer,
+  Description,
+  PaginationContainer,
+  Button,
+  YoutubeStyled,
+} from '../components/video.styled'
 
 const VideosIndex = ({
   location,
@@ -22,7 +27,7 @@ const VideosIndex = ({
   const [page, setPage] = useState("")
   const apiKey = process.env.GATSBY_YOUTUBE_API_KEY
   const url = `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=${youtubePlaylistId}&part=snippet&maxResults=5&key=${apiKey}`
-  const { data, isLoading } = useFetch(url, { page })
+  const { data,isLoading } = useFetch(url, { page })
 
   return (
     <Layout location={location} title={name} icon={icon}>
@@ -33,7 +38,7 @@ const VideosIndex = ({
             lang: intl.locale,
           }}
         />
-        <div className={styles.videos + " wrapper"}>
+        <VideosContainer className="wrapper">
         {
           isLoading && <Loader
             type="Puff"
@@ -52,30 +57,31 @@ const VideosIndex = ({
                     key={video.snippet.resourceId.videoId}
                   >
                     <h3>{video.snippet.title}</h3>
-                    <YouTube
-                      containerClassName={styles.youtubeContainer}
+                    <YoutubeStyled
                       videoId={video.snippet.resourceId.videoId}
                     />
-                    <p className={styles.videoDescription}>{video.snippet.description}</p>
+                    <Description>
+                      {video.snippet.description}
+                    </Description>
                   </Fragment>
                 ))
               }
-              <div className={styles.pagination}>
-                <button
-                  className={data.prevPageToken ? styles.paginationButton : styles.paginationButton + " " + styles.disabled}
+              <PaginationContainer>
+                <Button
+                  disabled={!data.prevPageToken}
                   onClick={() => data.prevPageToken && setPage(data.prevPageToken)}>
                   {intl.formatMessage({id: "misc.previous"})}
-                </button>
-                <button
-                  className={data.nextPageToken ? styles.paginationButton : styles.paginationButton + " " + styles.disabled}
+                </Button>
+                <Button
+                  disabled={!data.nextPageToken}
                   onClick={() => data.nextPageToken && setPage(data.nextPageToken)}>
                   {intl.formatMessage({id: "misc.next"})}
-                </button>
-              </div>
+                </Button>
+              </PaginationContainer>
             </>
           )
         }
-        </div>
+        </VideosContainer>
       </div>
     </Layout>
   )

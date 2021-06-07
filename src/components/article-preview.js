@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'gatsby-plugin-react-intl'
+import { PreviewTitle } from './article-preview.styled'
 
-import * as styles from './article-preview.module.css'
 
 const ArticlePreview = ({ article }) => (
   <div>
-    <h3 className={styles.previewTitle}>
+    <PreviewTitle>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
-    </h3>
+    </PreviewTitle>
     <small>{article.publishDate}</small>
   </div>
 )

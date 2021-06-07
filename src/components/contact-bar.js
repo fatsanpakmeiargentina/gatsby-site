@@ -6,7 +6,7 @@ import {
 import InstagranIcon from '../icons/InstagramIcon'
 import YoutubeIcon from '../icons/YoutubeIcon'
 import FlickrIcon from '../icons/FlickrIcon'
-import * as styles from './contact-bar.module.css'
+import { ContactBarLink } from './contact-bar.styled'
 
 const ContactBar = ({
   email,
@@ -15,22 +15,22 @@ const ContactBar = ({
   instagram,
   flickr,
 }) => (
-  <div className={styles.contactBar}>
-    <a target="_blank" rel="noreferrer" href={`mailto:${email}`}>
+  <div>
+    <ContactBarLink target="_blank" rel="noreferrer" href={`mailto:${email}`}>
       <EmailIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={facebook}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={facebook}>
       <FacebookIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={instagram}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={instagram}>
       <InstagranIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={youtube}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={youtube}>
       <YoutubeIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={flickr}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={flickr}>
       <FlickrIcon size={32} round />
-    </a>
+    </ContactBarLink>
   </div>
 )
 

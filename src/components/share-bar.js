@@ -15,13 +15,13 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share"
-import * as styles from './share-bar.module.css'
+import { Container } from './share-bar.styled'
 
 const ShareBar = ({
   shareURL,
   title,
 }) => (
-  <div className={styles.shareBar}>
+  <Container>
     <EmailShareButton
       url={shareURL}
       subject={title || "Email"}
@@ -70,7 +70,7 @@ const ShareBar = ({
     >
       <WhatsappIcon size={32} round />
     </WhatsappShareButton>
-  </div>
+  </Container>
 )
 
 export default ShareBar
