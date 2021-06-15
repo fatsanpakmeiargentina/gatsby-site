@@ -16,7 +16,8 @@ const AboutIndex = ({
       instagram,
       email,
       facebook,
-      flickr,
+      kwai,
+      whatsapp,
       youtube,
       direction,
       cfDirection,
@@ -52,11 +53,12 @@ const AboutIndex = ({
           <h2>{intl.formatMessage({id: "about.contactUs.title"})}</h2>
           <p>{intl.formatMessage({id: "about.contactUs.description"})}</p>
           <ContactBar
+            whatsapp={whatsapp}
             email={email}
             facebook={facebook}
-            flickr={flickr}
             youtube={youtube}
             instagram={instagram}
+            kwai={kwai}
           />
         </div>
       </div>
@@ -73,7 +75,8 @@ export const pageQuery = graphql`
       instagram
       email
       facebook
-      flickr
+      kwai
+      whatsapp
       youtube
       direction {
         lat

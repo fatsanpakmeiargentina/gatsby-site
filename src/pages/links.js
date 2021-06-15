@@ -63,6 +63,8 @@ export const pageQuery = graphql`
             web
             facebook
             email
+            instagram
+            phone
             logo {
               gatsbyImageData(layout: FIXED, width: 100)
             }

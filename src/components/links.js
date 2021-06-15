@@ -2,6 +2,8 @@ import React from 'react'
 import { useIntl } from 'gatsby-plugin-react-intl'
 import { FacebookIcon, EmailIcon } from 'react-share'
 import InternetIcon from '../icons/InternetIcon'
+import PhoneIcon from '../icons/PhoneIcon'
+import InstagramIcon from '../icons/InstagramIcon'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { Container, ItemsContainer, LinkGroupContiner, Items } from './links.styled'
 
@@ -11,6 +13,8 @@ export const LinkItem = ({
     web,
     facebook,
     email,
+    instagram,
+    phone,
     logo
   },
 }) => (
@@ -27,6 +31,11 @@ export const LinkItem = ({
             <InternetIcon size={32} round bgColor="#000000" fgColor="FFF" />
           </a>
         }
+        {instagram &&
+          <a target="_blank" rel="noreferrer" href={`${instagram}`}>
+            <InstagramIcon size={32} round />
+          </a>
+        }
         {facebook &&
           <a target="_blank" rel="noreferrer" href={`${facebook}`}>
             <FacebookIcon size={32} round />
@@ -35,6 +44,11 @@ export const LinkItem = ({
         {email &&
           <a href={`mailto:${email}`}>
             <EmailIcon size={32} round />
+          </a>
+        }
+        {phone &&
+          <a href={`tel:${phone}`}>
+            <PhoneIcon size={32} round />
           </a>
         }
       </Items>

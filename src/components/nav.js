@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby-plugin-react-intl'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import {
   Nav,
