@@ -44,7 +44,7 @@ export const Nav = styled.nav`
 
   @media (max-width: 1023px) {
     width: 100vw;
-    padding: 0.2em;
+    padding: 0em;
   }
 
 `
