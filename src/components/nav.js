@@ -15,13 +15,17 @@ export const Navbar = ({
   <>
     <Nav>
       <Logo>
-        <GatsbyImage
-          alt={title}
-          image={getImage(icon)}
-        />
-        <p>
-          {title}
-        </p>
+        <a href="/">
+          <GatsbyImage
+            alt={title}
+            image={getImage(icon)}
+          />
+        </a>
+        <a href="/">
+          <p>
+            {title}
+          </p>
+        </a>
       </Logo>
     </Nav>
     <Burger />

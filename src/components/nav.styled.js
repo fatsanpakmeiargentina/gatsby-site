@@ -13,6 +13,9 @@ export const StyledBurger = styled.div`
     justify-content: space-around;
     flex-flow: column nowrap;
   }
+  @media (max-width: 400px) {
+    top: 3.5em;
+  }
   div {
     width: 2rem;
     height: 0.25rem;
@@ -76,9 +79,9 @@ export const Ul = styled.ul`
     top: -16px;
     right: 0;
     height: 100%;
-    width: 180px;
+    width: 80%;
     align-items: baseline;
-    padding-top: 3.5rem;
+    padding-top: 8.5rem;
     transition: transform 0.3s ease-in-out;
     z-index: 9;
     justify-content: normal;
@@ -102,12 +105,16 @@ export const Logo = styled.div`
   display: flex;
   align-items: center;
   color: white;
+  a {
+    z-index: 1;
+  }
   p {
     padding-left: 1em;
+    width: 100%;
   }
-  @media (max-width: 425px) {
+  @media (max-width: 400px) {
     p {
-      width: 50%;
+      width: 90%;
     }
   }
 
