@@ -27,7 +27,7 @@ export const Button = styled.button`
   border-radius: 10px;
   font-size: 1em;
   margin: 25px;
-  padding: 15px 40px;
+  padding: 15px 20px;
   transition: all 0.3s ease;
   cursor: ${props => props.disabled ? 'not-allowed !important' : 'pointer'};
   &:hover {
