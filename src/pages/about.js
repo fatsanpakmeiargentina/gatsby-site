@@ -42,13 +42,13 @@ const AboutIndex = ({
           <IframeResizer
             width="100%"
             height="500"
-            src={`http://maps.google.com/maps?q=${direction.lat},${direction.lon}&z=16&output=embed`}
+            src={`https://maps.google.com/maps?q=${direction.lat},${direction.lon}&z=16&output=embed`}
           />
           <p>{intl.formatMessage({id: "about.location.cfHeadquarter"})}</p>
           <IframeResizer
             width="100%"
             height="500"
-            src={`http://maps.google.com/maps?q=${cfDirection.lat},${cfDirection.lon}&z=16&output=embed`}
+            src={`https://maps.google.com/maps?q=${cfDirection.lat},${cfDirection.lon}&z=16&output=embed`}
           />
           <h2>{intl.formatMessage({id: "about.contactUs.title"})}</h2>
           <p>{intl.formatMessage({id: "about.contactUs.description"})}</p>
