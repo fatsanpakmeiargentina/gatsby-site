@@ -69,12 +69,19 @@ const VideosIndex = ({
               <PaginationContainer>
                 <Button
                   disabled={!data.prevPageToken}
-                  onClick={() => data.prevPageToken && setPage(data.prevPageToken)}>
+                  onClick={() => {
+                    data.prevPageToken && setPage(data.prevPageToken)
+                    console.log("pepe")
+                    window.scrollTo(0, 0)
+                  }}>
                   {intl.formatMessage({id: "misc.previous"})}
                 </Button>
                 <Button
                   disabled={!data.nextPageToken}
-                  onClick={() => data.nextPageToken && setPage(data.nextPageToken)}>
+                  onClick={() => {
+                    data.nextPageToken && setPage(data.nextPageToken)
+                    window.scrollTo(0, 0)
+                  }}>
                   {intl.formatMessage({id: "misc.next"})}
                 </Button>
               </PaginationContainer>

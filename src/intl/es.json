@@ -36,5 +36,9 @@
   },
   "videos": {
     "title": "Videos"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que estas buscando no existe"
   }
 }
