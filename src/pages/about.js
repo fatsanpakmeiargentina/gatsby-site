@@ -4,6 +4,8 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import { useIntl } from 'gatsby-plugin-react-intl'
 import ContactBar from '../components/contact-bar'
+import IframeResizer from 'iframe-resizer-react'
+
 
 const AboutIndex = ({
   location,
@@ -14,9 +16,11 @@ const AboutIndex = ({
       instagram,
       email,
       facebook,
-      flickr,
+      kwai,
+      whatsapp,
       youtube,
       direction,
+      cfDirection,
     },
   },
 }) => {
@@ -34,14 +38,27 @@ const AboutIndex = ({
         <div className="wrapper">
           <h2>{intl.formatMessage({id: "about.location.title"})}</h2>
           <p>{intl.formatMessage({id: "about.location.description"})}</p>
+          <p>{intl.formatMessage({id: "about.location.laPlataHeadquarter"})}</p>
+          <IframeResizer
+            width="100%"
+            height="500"
+            src={`http://maps.google.com/maps?q=${direction.lat},${direction.lon}&z=16&output=embed`}
+          />
+          <p>{intl.formatMessage({id: "about.location.cfHeadquarter"})}</p>
+          <IframeResizer
+            width="100%"
+            height="500"
+            src={`http://maps.google.com/maps?q=${cfDirection.lat},${cfDirection.lon}&z=16&output=embed`}
+          />
           <h2>{intl.formatMessage({id: "about.contactUs.title"})}</h2>
           <p>{intl.formatMessage({id: "about.contactUs.description"})}</p>
           <ContactBar
+            whatsapp={whatsapp}
             email={email}
             facebook={facebook}
-            flickr={flickr}
             youtube={youtube}
             instagram={instagram}
+            kwai={kwai}
           />
         </div>
       </div>
@@ -58,9 +75,14 @@ export const pageQuery = graphql`
       instagram
       email
       facebook
-      flickr
+      kwai
+      whatsapp
       youtube
       direction {
+        lat
+        lon
+      }
+      cfDirection {
         lat
         lon
       }

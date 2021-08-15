@@ -1,5 +1,5 @@
 import React from "react"
-import Dropdown from 'react-dropdown'
+import { DropdownStyled } from './language.styled'
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-react-intl"
 import * as styles from './language.module.css'
 
@@ -7,8 +7,7 @@ const Language = () => (
   <IntlContextConsumer>
       {
         ({ languages, language: currentLocale }) =>
-          <Dropdown
-            className={styles.languages}
+          <DropdownStyled
             options={[
               { label: "Español", value: "es" },
               { label: "English", value: "en"},

@@ -1,11 +1,12 @@
 import React from 'react'
-import './base.css'
 import Container from './container'
-import Navigation from './navigation'
+import Nav from './nav'
+import BaseStyle from './base.styled'
 
 const Template = ({ title, icon, children }) => (
   <>
-    <Navigation title={title} icon={icon}/>
+    <BaseStyle />
+    <Nav title={title} icon={icon}/>
     <Container>
       {children}
     </Container>

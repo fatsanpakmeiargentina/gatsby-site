@@ -2,35 +2,40 @@ import React from 'react'
 import {
   EmailIcon,
   FacebookIcon,
+  WhatsappIcon,
 } from "react-share"
-import InstagranIcon from '../icons/InstagramIcon'
+import InstagramIcon from '../icons/InstagramIcon'
+import KwaiIcon from '../icons/KwaiIcon'
 import YoutubeIcon from '../icons/YoutubeIcon'
-import FlickrIcon from '../icons/FlickrIcon'
-import * as styles from './contact-bar.module.css'
+import { ContactBarLink } from './contact-bar.styled'
 
 const ContactBar = ({
   email,
   facebook,
   youtube,
   instagram,
-  flickr,
+  whatsapp,
+  kwai
 }) => (
-  <div className={styles.contactBar}>
-    <a target="_blank" rel="noreferrer" href={`mailto:${email}`}>
+  <div>
+    <ContactBarLink target="_blank" rel="noreferrer" href={`tel:${whatsapp}`}>
+      <WhatsappIcon size={32} round />
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={`mailto:${email}`}>
       <EmailIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={facebook}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={facebook}>
       <FacebookIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={instagram}>
-      <InstagranIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={youtube}>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={instagram}>
+      <InstagramIcon size={32} round />
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={youtube}>
       <YoutubeIcon size={32} round />
-    </a>
-    <a target="_blank" rel="noreferrer" href={flickr}>
-      <FlickrIcon size={32} round />
-    </a>
+    </ContactBarLink>
+    <ContactBarLink target="_blank" rel="noreferrer" href={kwai}>
+      <KwaiIcon size={32} round />
+    </ContactBarLink>
   </div>
 )
 

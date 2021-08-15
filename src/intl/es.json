@@ -3,7 +3,9 @@
     "title": "Sobre nosotros",
     "location": {
       "title": "Localización",
-      "description": "Nos encontramos en la ciudad de La Plata"
+      "description": "Actualmente la escuela cuenta con 2 sedes en Argentina, una en La Plata, y otra en Capital Federal",
+      "laPlataHeadquarter": "Sede de La Plata",
+      "cfHeadquarter": "Sede de Capital Federal"
     },
     "contactUs": {
       "title": "Formas de contacto",
@@ -34,5 +36,9 @@
   },
   "videos": {
     "title": "Videos"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que estas buscando no existe"
   }
 }
