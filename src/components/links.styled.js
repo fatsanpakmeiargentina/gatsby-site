@@ -8,7 +8,10 @@ export const Container = styled.div`
 `
 
 export const ItemsContainer = styled.div`
-  text-align: center
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 `
 
 export const LinkGroupContiner = styled.div`
@@ -16,6 +19,7 @@ export const LinkGroupContiner = styled.div`
   flex-wrap: wrap;
   @media (max-width: 800px) {
     flex-direction: column;
+    align-items: center;
   }
 `
 

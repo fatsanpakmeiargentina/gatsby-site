@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link, useIntl } from 'gatsby-plugin-react-intl'
-import * as S from './nav.styled'
+import {
+  Ul
+} from './nav.styled'
 
-export const RightNav = (props) => {
+export const RightNav = ({ open }) => {
   const intl = useIntl()
 
   return (
-    <S.Ul open={props.open}>
+    <Ul open={open}>
       <li>
         <Link to="/school">{intl.formatMessage({id: "school.title"})}</Link>
       </li>
@@ -22,7 +24,7 @@ export const RightNav = (props) => {
       <li>
         <Link to="/blog/">{intl.formatMessage({id: "blog.title"})}</Link>
       </li>
-    </S.Ul>
+    </Ul>
   )
 }
 
