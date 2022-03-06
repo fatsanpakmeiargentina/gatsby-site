@@ -3,8 +3,23 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { BLOCKS } from '@contentful/rich-text-types'
 import Layout from '../components/layout'
 import ShareBar from '../components/share-bar'
+
+const options = {
+  renderNode: {
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      const { gatsbyImageData, description } = node.data.target
+      return (
+        <GatsbyImage
+          image={getImage(gatsbyImageData)}
+          alt={description}
+        />
+      )
+    },
+  },
+}
 
 const BlogPostTemplate = ({
   location,
@@ -28,18 +43,11 @@ const BlogPostTemplate = ({
         >
           {post.publishDate}
         </p>
-        {
-          post.body.references.map((reference) => (
-            <GatsbyImage
-              key={reference.contentful_id}
-              alt={post.title}
-              image={getImage(reference)}
-            />
-          ))
-        }
-        {
-          renderRichText(post.body)
-        }
+        <div>
+          {
+            renderRichText(post.body, options)
+          }
+        </div>
         <ShareBar
           shareURL={location.href}
           title={post.title}
@@ -63,6 +71,9 @@ export const pageQuery = graphql`
           ... on ContentfulAsset {
             contentful_id
             gatsbyImageData(layout: FULL_WIDTH)
+            title
+            description
+            __typename
           }
         }
       }
