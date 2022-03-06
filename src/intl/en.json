@@ -24,7 +24,8 @@
   "misc": {
     "recentArticles": "Recent Articles",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "readMore": "Read more"
   },
   "photos": {
     "title": "Photos"
