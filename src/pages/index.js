@@ -54,11 +54,14 @@ export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery($locale: String) {
-    allContentfulBlogPost(limit: 4, sort: { fields: [publishDate], order: DESC }, filter: {node_locale: {eq: $locale}}) {
+    allContentfulBlogPost(limit: 3, sort: { fields: [publishDate], order: DESC }, filter: {node_locale: {eq: $locale}}) {
       edges {
         node {
           title
           slug
+          previewImage {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
           publishDate(formatString: "MMMM Do, YYYY", locale: $locale)
           body {
             raw
