@@ -16,7 +16,6 @@ const AboutIndex = ({
       instagram,
       email,
       facebook,
-      kwai,
       whatsapp,
       youtube,
       direction,
@@ -58,7 +57,6 @@ const AboutIndex = ({
             facebook={facebook}
             youtube={youtube}
             instagram={instagram}
-            kwai={kwai}
           />
         </div>
       </div>
@@ -75,7 +73,6 @@ export const pageQuery = graphql`
       instagram
       email
       facebook
-      kwai
       whatsapp
       youtube
       direction {
