@@ -54,6 +54,9 @@ export const pageQuery = graphql`
         node {
           title
           slug
+          previewImage {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
           publishDate(formatString: "MMMM Do, YYYY", locale: $locale)
           body {
             raw

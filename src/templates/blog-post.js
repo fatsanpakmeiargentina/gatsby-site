@@ -36,6 +36,7 @@ const BlogPostTemplate = ({
       <Helmet title={`${post.title} | ${name}`} />
       <div className="wrapper">
         <h1 className="section-headline">{post.title}</h1>
+        <h4>{post.subtitle}</h4>
         <p
           style={{
             display: 'block',
@@ -63,6 +64,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!, $locale: String) {
     contentfulBlogPost(slug: { eq: $slug }, node_locale: { eq: $locale }) {
       title
+      subtitle
       node_locale
       publishDate(formatString: "MMMM Do, YYYY", locale: $locale)
       body {
